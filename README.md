@@ -62,7 +62,7 @@ python3 gme.py -u https://example.com -s -t
 
 ### Example Output
 
-![Screenshot 2024-09-10 210223](https://github.com/user-attachments/assets/9d74693e-71d9-42b0-b3a0-9cbc4c0a55f3)
+![Screenshot 2024-09-10 223008](https://github.com/user-attachments/assets/d75a99f4-4d6d-4968-b1a3-0ef2c1f6887e)
 
 
 ### Acknowledgments
