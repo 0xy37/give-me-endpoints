@@ -80,6 +80,19 @@ def filter_same_domain(urls, base_domain):
     """Filters URLs to include only those from the same domain."""
     return [url for url in urls if base_domain in urlparse(url).netloc]
 
+
+# Function to show http status color coded
+def get_status_colored(status_code):
+    if status_code < 300:
+        return f"{Fore.GREEN}{status_code}"  # OK responses are green
+    elif status_code < 400:
+        return f"{Fore.BLUE}{status_code}"  # Redirection responses are green
+    elif status_code < 500:
+        return f"{Fore.YELLOW}{status_code}"  # Client errors are yellow
+    else:
+        return f"{Fore.RED}{status_code}"  # Server errors are red
+
+
 # Function to evaluate URLs (fetch status code and title) 
 
 def evaluate_url(url):
@@ -88,7 +101,7 @@ def evaluate_url(url):
         soup = BeautifulSoup(response.text, 'lxml')  # Use 'lxml' for parsing
         title = soup.title.string if soup.title else 'No Title'
         status_code = response.status_code
-        print(f"{Fore.CYAN}URL: {url} {Fore.GREEN}Status: {status_code} {Fore.YELLOW}Title: {title}")
+        print("[",get_status_colored(status_code),"]",f"{Fore.CYAN}URL: {url}",f"{Fore.YELLOW}Title: {title}")
         return (url, status_code, title)
     except requests.RequestException:
         print(f"{Fore.CYAN}URL: {url} {Fore.RED}Status: Failed to connect {Fore.YELLOW}Title: No Title")
